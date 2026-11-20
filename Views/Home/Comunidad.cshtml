@@ -1,0 +1,627 @@
+@{
+    ViewBag.Title = "Comunidad";
+}
+
+<style>
+    .comunidad {
+        --verde-oscuro: #2d531a;
+        --verde: #6e8649;
+        --verde-claro: #e2e8c2;
+        --verde-panel: #c2c99e;
+        --marron: #704019;
+        --crema: #f5f1e4;
+        font-family: Arial, Helvetica, sans-serif;
+        color: #25271f;
+        background: #ffffff;
+        width: 100%;
+    }
+
+    .comunidad * {
+        box-sizing: border-box;
+    }
+
+    .com-header {
+        background: var(--verde-claro);
+        min-height: 68px;
+        padding: 13px 4.5%;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 25px;
+    }
+
+    .com-logo {
+        display: flex;
+        align-items: center;
+        gap: 9px;
+        color: var(--verde-oscuro);
+        text-decoration: none;
+        font-size: 25px;
+        font-weight: 700;
+        white-space: nowrap;
+    }
+
+    .com-logo span {
+        font-size: 29px;
+    }
+
+    .com-nav {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 9px;
+        flex-wrap: wrap;
+    }
+
+    .com-nav a {
+        padding: 10px 14px;
+        color: #25271f;
+        text-decoration: none;
+        font-size: 10px;
+        text-transform: uppercase;
+        border-radius: 4px;
+    }
+
+    .com-nav a.activo {
+        background: #93a46e;
+    }
+
+    .com-perfil {
+        width: 34px;
+        height: 34px;
+        border: 1px solid var(--verde-oscuro);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: var(--verde-oscuro);
+        font-size: 21px;
+        text-decoration: none;
+        flex-shrink: 0;
+    }
+
+    .com-contenido {
+        max-width: 1120px;
+        width: 84%;
+        margin: 0 auto;
+        padding: 42px 0 45px;
+    }
+
+    .com-titulo-fila {
+        display: grid;
+        grid-template-columns: 1.3fr .45fr .95fr;
+        gap: 22px;
+        align-items: center;
+        margin-bottom: 24px;
+    }
+
+    .com-titulo h1 {
+        color: var(--verde);
+        font-size: 34px;
+        margin: 0 0 7px;
+    }
+
+    .com-titulo p {
+        margin: 0;
+        color: var(--marron);
+        font-size: 14px;
+    }
+
+    .com-frase-ingles {
+        color: #0098d0;
+        font-size: 12px;
+        line-height: 1.35;
+    }
+
+    .com-boton-nueva {
+        background: var(--marron);
+        color: #ffffff;
+        text-decoration: none;
+        text-align: center;
+        padding: 13px 20px;
+        border-radius: 25px;
+        font-size: 13px;
+        font-weight: 700;
+        white-space: nowrap;
+    }
+
+    .com-boton-nueva span {
+        font-size: 17px;
+        margin-right: 7px;
+    }
+
+    .com-intro {
+        display: grid;
+        grid-template-columns: 2.4fr .85fr;
+        gap: 18px;
+        margin-bottom: 20px;
+    }
+
+    .com-banner {
+        min-height: 150px;
+        border-radius: 22px;
+        padding: 27px 34px;
+        display: grid;
+        grid-template-columns: 1.2fr .8fr;
+        align-items: center;
+        gap: 20px;
+        background-color: var(--crema);
+        background-image: url("https://www.transparenttextures.com/patterns/leaves.png");
+        background-repeat: repeat;
+    }
+
+    .com-banner h2 {
+        margin: 0 0 12px;
+        color: var(--verde-oscuro);
+        font-size: 21px;
+    }
+
+    .com-banner p {
+        margin: 0;
+        max-width: 360px;
+        color: #5d4a32;
+        font-size: 12px;
+        line-height: 1.45;
+    }
+
+    .com-boton-unirse {
+        display: inline-block;
+        text-align: center;
+        background: var(--marron);
+        color: white;
+        text-decoration: none;
+        padding: 13px 20px;
+        border-radius: 25px;
+        font-size: 12px;
+        font-weight: 700;
+        white-space: nowrap;
+    }
+
+    .com-boton-unirse span {
+        margin-left: 8px;
+        font-size: 16px;
+    }
+
+    .com-cita {
+        min-height: 150px;
+        border-radius: 22px;
+        background: var(--verde-panel);
+        padding: 17px 20px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        color: var(--marron);
+    }
+
+    .com-comilla {
+        font-size: 39px;
+        font-weight: 700;
+        line-height: .7;
+    }
+
+    .com-cita p {
+        text-align: center;
+        margin: 0;
+        font-size: 18px;
+        line-height: 1.35;
+        color: #704019;
+    }
+
+    .com-comilla-final {
+        text-align: right;
+    }
+
+    .com-publicaciones {
+        display: grid;
+        grid-template-columns: minmax(0, 2.65fr) minmax(200px, .9fr);
+        gap: 18px;
+        align-items: start;
+    }
+
+    .com-publicaciones h2 {
+        font-size: 18px;
+        margin: 0 0 8px;
+        color: #171914;
+    }
+
+    .com-lista-posts {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 17px;
+    }
+
+    .com-post {
+        background: var(--verde-panel);
+        border-radius: 17px;
+        padding: 13px;
+        overflow: hidden;
+    }
+
+    .com-post-cabecera {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        margin-bottom: 10px;
+    }
+
+    .com-avatar {
+        width: 29px;
+        height: 29px;
+        object-fit: cover;
+        border-radius: 50%;
+        flex-shrink: 0;
+    }
+
+    .com-usuario {
+        min-width: 0;
+        flex: 1;
+    }
+
+    .com-usuario strong {
+        display: block;
+        font-size: 11px;
+        overflow-wrap: anywhere;
+    }
+
+    .com-usuario small {
+        display: block;
+        font-size: 10px;
+        margin-top: 3px;
+        color: #5d604f;
+    }
+
+    .com-menu-post {
+        color: #1e2419;
+        font-weight: 700;
+        font-size: 17px;
+        align-self: flex-start;
+        line-height: 1;
+    }
+
+    .com-foto-post {
+        display: block;
+        width: 100%;
+        height: 125px;
+        object-fit: cover;
+        border-radius: 10px;
+        margin-bottom: 9px;
+    }
+
+    .com-post h3 {
+        margin: 0 0 5px;
+        font-size: 13px;
+        color: #344d22;
+    }
+
+    .com-post p {
+        margin: 0;
+        font-size: 11px;
+        line-height: 1.35;
+        color: #5b5e4b;
+        min-height: 44px;
+    }
+
+    .com-post-acciones {
+        display: flex;
+        align-items: center;
+        gap: 17px;
+        margin-top: 7px;
+        font-size: 11px;
+    }
+
+    .com-like {
+        color: #e05252;
+    }
+
+    .com-comentario {
+        color: #0098d0;
+    }
+
+    .com-guardar {
+        margin-left: auto;
+        color: #303627;
+    }
+
+    .com-temas {
+        background: var(--verde-claro);
+        border-radius: 22px;
+        padding: 22px 20px;
+        margin-top: 0;
+    }
+
+    .com-temas h3 {
+        margin: 0 0 15px;
+        color: var(--verde-oscuro);
+        font-size: 17px;
+    }
+
+    .com-etiquetas {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 9px;
+    }
+
+    .com-etiquetas a {
+        display: inline-block;
+        background: var(--verde);
+        color: #ffffff;
+        text-decoration: none;
+        padding: 9px 15px;
+        border-radius: 4px;
+        font-size: 11px;
+    }
+
+    .com-footer {
+        background: var(--verde-claro);
+        padding: 20px 4.5%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 25px;
+    }
+
+    .com-footer-marca {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        color: var(--verde-oscuro);
+        font-size: 11px;
+        line-height: 1.35;
+    }
+
+    .com-footer-marca span {
+        font-size: 28px;
+    }
+
+    .com-footer-nav {
+        display: flex;
+        align-items: center;
+        gap: 23px;
+        flex-wrap: wrap;
+    }
+
+    .com-footer-nav a {
+        color: #292c22;
+        text-decoration: none;
+        font-size: 10px;
+        text-transform: uppercase;
+    }
+
+    @@media (max-width: 950px) {
+        .com-header {
+            flex-wrap: wrap;
+        }
+
+        .com-nav {
+            order: 3;
+            width: 100%;
+        }
+
+        .com-contenido {
+            width: 90%;
+        }
+
+        .com-titulo-fila {
+            grid-template-columns: 1fr 1fr;
+        }
+
+        .com-frase-ingles {
+            display: none;
+        }
+
+        .com-intro {
+            grid-template-columns: 1fr;
+        }
+
+        .com-cita {
+            min-height: 110px;
+        }
+
+        .com-publicaciones {
+            grid-template-columns: 1fr;
+        }
+
+        .com-temas {
+            margin-top: 8px;
+        }
+
+        .com-etiquetas {
+            flex-direction: row;
+            flex-wrap: wrap;
+        }
+    }
+
+    @@media (max-width: 650px) {
+        .com-contenido {
+            padding-top: 28px;
+        }
+
+        .com-titulo-fila {
+            grid-template-columns: 1fr;
+        }
+
+        .com-boton-nueva {
+            justify-self: start;
+        }
+
+        .com-banner {
+            grid-template-columns: 1fr;
+            padding: 25px;
+        }
+
+        .com-boton-unirse {
+            justify-self: start;
+        }
+
+        .com-lista-posts {
+            grid-template-columns: 1fr;
+        }
+
+        .com-foto-post {
+            height: 200px;
+        }
+
+        .com-post p {
+            min-height: auto;
+        }
+
+        .com-footer {
+            flex-direction: column;
+            align-items: flex-start;
+        }
+
+        .com-footer-nav {
+            gap: 15px;
+        }
+
+        .com-logo {
+            font-size: 22px;
+        }
+
+        .com-nav a {
+            font-size: 9px;
+            padding: 8px;
+        }
+    }
+</style>
+
+<div class="comunidad">
+    <main class="com-contenido">
+        <section class="com-titulo-fila">
+            <div class="com-titulo">
+                <h1>Comunidad</h1>
+                <p>Un espacio para compartir, aprender y crecer juntos.</p>
+            </div>
+
+            <div class="com-frase-ingles">
+                Plant lovers<br />
+                en un mismo lugar.
+            </div>
+
+            <a class="com-boton-nueva" href="@Url.Action("Crear", "Publicaciones")">
+                <span>＋</span> Nueva publicación
+            </a>
+        </section>
+
+        <section class="com-intro">
+            <div class="com-banner">
+                <div>
+                    <h2>Compartí tu experiencia</h2>
+                    <p>
+                        Mostrá tus plantas, hacé preguntas, compartí consejos y conectá con
+                        personas que aman la naturaleza tanto como vos.
+                    </p>
+                </div>
+
+                <a class="com-boton-unirse" href="@Url.Action("Crear", "Publicaciones")">
+                    Unirme a la comunidad <span>→</span>
+                </a>
+            </div>
+
+            <aside class="com-cita">
+                <div class="com-comilla">“</div>
+                <p>Pequeñas<br />conversaciones,<br />grandes cambios</p>
+                <div class="com-comilla com-comilla-final">”</div>
+            </aside>
+        </section>
+
+        <section class="com-publicaciones">
+            <div>
+                <h2>Publicaciones recientes</h2>
+
+                <div class="com-lista-posts">
+                    <article class="com-post">
+                        <div class="com-post-cabecera">
+                            <img class="com-avatar"
+                                 src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=100&q=80"
+                                 alt="Foto de perfil de Sofi" />
+                            <div class="com-usuario">
+                                <strong>@@sofi.plantas</strong>
+                                <small>hace 2 horas</small>
+                            </div>
+                            <span class="com-menu-post">•••</span>
+                        </div>
+
+                        <img class="com-foto-post"
+                             src="https://images.unsplash.com/photo-1501004318641-b39e6451bec6?auto=format&fit=crop&w=700&q=85"
+                             alt="Monstera en un ambiente luminoso" />
+
+                        <h3>Mi nueva monstera ♧</h3>
+                        <p>¡Por fin llegó a casa! ¿Algún consejo para sus primeros cuidados?</p>
+
+                        <div class="com-post-acciones">
+                            <span class="com-like">♡ 24</span>
+                            <span class="com-comentario">◯ 5</span>
+                            <span class="com-guardar">♧</span>
+                        </div>
+                    </article>
+
+                    <article class="com-post">
+                        <div class="com-post-cabecera">
+                            <img class="com-avatar"
+                                 src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=100&q=80"
+                                 alt="Foto de perfil de Tomi" />
+                            <div class="com-usuario">
+                                <strong>@@tomi.green</strong>
+                                <small>hace 5 horas</small>
+                            </div>
+                            <span class="com-menu-post">•••</span>
+                        </div>
+
+                        <img class="com-foto-post"
+                             src="https://images.unsplash.com/photo-1593482892290-f54927ae2b5b?auto=format&fit=crop&w=700&q=85"
+                             alt="Planta de interior en una maceta" />
+
+                        <h3>¿Hojas amarillas?</h3>
+                        <p>Mi sansevieria empezó a tener hojas amarillas. ¿Qué puede ser?</p>
+
+                        <div class="com-post-acciones">
+                            <span class="com-like">♡ 12</span>
+                            <span class="com-comentario">◯ 8</span>
+                            <span class="com-guardar">♧</span>
+                        </div>
+                    </article>
+
+                    <article class="com-post">
+                        <div class="com-post-cabecera">
+                            <img class="com-avatar"
+                                 src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=100&q=80"
+                                 alt="Foto de perfil de Vale" />
+                            <div class="com-usuario">
+                                <strong>@@vale.natura</strong>
+                                <small>hace 1 día</small>
+                            </div>
+                            <span class="com-menu-post">•••</span>
+                        </div>
+
+                        <img class="com-foto-post"
+                             src="https://images.unsplash.com/photo-1466692476868-aef1dfb1e735?auto=format&fit=crop&w=700&q=85"
+                             alt="Colección de plantas en macetas" />
+
+                        <h3>Mi rincón verde ♧</h3>
+                        <p>Les comparto mi espacio favorito de la casa.</p>
+
+                        <div class="com-post-acciones">
+                            <span class="com-like">♡ 56</span>
+                            <span class="com-comentario">◯ 10</span>
+                            <span class="com-guardar">♧</span>
+                        </div>
+                    </article>
+                </div>
+            </div>
+
+            <aside class="com-temas">
+                <h3>Temas populares</h3>
+                <div class="com-etiquetas">
+                    <a href="@Url.Action("Index", "Comunidad", new { tema = "Cuidados" })">#Cuidados</a>
+                    <a href="@Url.Action("Index", "Comunidad", new { tema = "PlantasDelInterior" })">#PlantasDelInterior</a>
+                    <a href="@Url.Action("Index", "Comunidad", new { tema = "DecoracionVerde" })">#DecoraciónVerde</a>
+                    <a href="@Url.Action("Index", "Comunidad", new { tema = "Identificacion" })">#Identificación</a>
+                    <a href="@Url.Action("Index", "Comunidad", new { tema = "Tips" })">#Tips</a>
+                    <a href="@Url.Action("Index", "Comunidad", new { tema = "PlantasPetFriendly" })">#PlantasPetFriendly</a>
+                </div>
+            </aside>
+        </section>
+    </main>
+</div>

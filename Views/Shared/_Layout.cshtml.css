@@ -1,6 +1,215 @@
 ﻿/* Please see documentation at https://learn.microsoft.com/aspnet/core/client-side/bundling-and-minification
 for details on configuring this project to bundle and minify static web assets. */
 
+:root {
+  --verde-oscuro: #2d531a;
+  --verde: #6e8649;
+  --verde-claro: #e2e8c2;
+  --verde-panel: #c2c99e;
+  --marron: #704019;
+  --text: #25291d;
+  --fondo: #ffffff;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  min-height: 100%;
+  background: var(--fondo);
+  color: var(--text);
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+.plantcare-layout a {
+  text-decoration: none;
+}
+
+
+.plantcare-header {
+    width: 100%;
+    height: 55px;
+    min-height: 55px;
+    padding: 0 4%;
+    background-color: #E2E8C2;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0;
+    border: none;
+}
+
+.plantcare-logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    width: 280px;
+    flex-shrink: 0;
+    color: #2D531A;
+    font-size: 25px;
+    font-weight: bold;
+    white-space: nowrap;
+    text-decoration: none;
+}
+
+.plantcare-logo img {
+    width: 26px;
+    height: 24px;
+    object-fit: contain;
+    display: block;
+    flex-shrink: 0;
+}
+
+.plantcare-logo img {
+    width: 46px;
+    height: 42px;
+    max-width: 34px;
+    max-height: 34px;
+    object-fit: contain;
+}
+
+.footer-izquierda img {
+    width: 32px;
+    height: 32px;
+    max-width: 32px;
+    max-height: 32px;
+    object-fit: contain;
+}
+
+.footer-izquierda img {
+    width: 46px;
+    height: 42px;
+    object-fit: contain;
+    display: block;
+    flex-shrink: 0;
+}
+.plantcare-nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex: 1;
+    max-width: 620px;
+    gap: 12px;
+    flex-wrap: nowrap;
+}
+
+.plantcare-nav a {
+    color: #25291D;
+    font-size: 9px;
+    font-weight: normal;
+    text-transform: uppercase;
+    text-decoration: none;
+    white-space: nowrap;
+    padding: 7px 18px;
+    border-radius: 4px;
+}
+
+.plantcare-nav a.activo {
+    background-color: #93A46E;
+    font-weight: normal;
+}
+
+.plantcare-nav a:hover {
+    background-color: #B8C69B;
+}
+
+.plantcare-perfil {
+    width: 30px;
+    height: 30px;
+    margin-left: 55px;
+    border: 1px solid #2D531A;
+    border-radius: 50%;
+    color: #2D531A;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    text-decoration: none;
+}
+
+@media (max-width: 950px) {
+    .plantcare-header {
+        padding: 0 2%;
+    }
+
+    .plantcare-logo {
+        width: auto;
+        font-size: 21px;
+    }
+
+    .plantcare-nav {
+        gap: 2px;
+    }
+
+    .plantcare-nav a {
+        padding: 7px 6px;
+        font-size: 8px;
+    }
+
+    .plantcare-perfil {
+        margin-left: 12px;
+    }
+}
+
+
+.plantcare-page {
+  width: 100%;
+}
+
+.plantcare-main {
+  width: 100%;
+}
+
+.plantcare-footer {
+  background: var(--verde-claro);
+  min-height: 76px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+  padding: 16px 4.8%;
+  border-top: 1px solid rgba(45, 83, 26, 0.12);
+}
+
+.plantcare-footer-marca {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--verde-oscuro);
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.plantcare-footer-marca span {
+  font-size: 24px;
+}
+
+.plantcare-footer-nav {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.plantcare-footer-nav a {
+  color: var(--verde-oscuro);
+  text-decoration: none;
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
 a.navbar-brand {
   white-space: normal;
   text-align: center;
@@ -39,10 +248,166 @@ button.accept-policy {
   line-height: inherit;
 }
 
-.footer {
-  position: absolute;
-  bottom: 0;
-  width: 100%;
-  white-space: nowrap;
-  line-height: 60px;
+@media (max-width: 900px) {
+  .plantcare-header {
+    flex-wrap: wrap;
+    justify-content: center;
+    padding-top: 16px;
+    padding-bottom: 16px;
+  }
+
+  .plantcare-footer {
+    flex-direction: column;
+    align-items: flex-start;
+    padding-top: 18px;
+    padding-bottom: 18px;
+  }
+
+  .plantcare-footer-nav {
+    justify-content: flex-start;
+  }
+}
+
+@media (max-width: 620px) {
+  .plantcare-header {
+    gap: 12px;
+  }
+
+  .plantcare-logo {
+    font-size: 22px;
+  }
+
+  .plantcare-nav {
+    width: 100%;
+    gap: 6px;
+  }
+
+  .plantcare-nav a {
+    padding: 8px 10px;
+    font-size: 9px;
+  }
+
+  .plantcare-footer {
+    gap: 12px;
+  }
+
+  .plantcare-footer-nav {
+    gap: 10px;
+  }
+}
+
+
+/* FOOTER PLANTCARE */
+
+.plantcare-footer {
+    width: 100%;
+    height: 55px;
+    background-color: #E2E8C2;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 4%;
+    box-sizing: border-box;
+}
+
+/* IZQUIERDA */
+
+.footer-izquierda {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.footer-izquierda img {
+    width: 20px;
+    height: 20px;
+    object-fit: contain;
+    display: block;
+    flex-shrink: 0;
+}
+
+.footer-izquierda p {
+    font-size: 10px;
+    line-height: 1.2;
+    color: #2D531A;
+    margin: 0;
+}
+
+/* DERECHA */
+
+.footer-derecha {
+    display: flex;
+    align-items: center;
+    gap: 35px;
+}
+
+.footer-links {
+    display: flex;
+    align-items: center;
+    gap: 38px;
+}
+
+.footer-links a {
+    color: #25291D;
+    text-decoration: none;
+    font-size: 9px;
+    font-weight: normal;
+    white-space: nowrap;
+}
+
+.footer-links a:hover {
+    color: #668444;
+}
+
+/* REDES SOCIALES */
+
+.footer-redes {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.footer-redes a {
+    color: #111111;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.footer-redes svg {
+    width: 14px;
+    height: 14px;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+.footer-redes .punto,
+.footer-redes .relleno {
+    fill: currentColor;
+    stroke: none;
+}
+
+/* PANTALLAS PEQUEÑAS */
+
+@media (max-width: 750px) {
+    .plantcare-footer {
+        height: auto;
+        min-height: 55px;
+        padding: 15px 4%;
+        flex-wrap: wrap;
+        gap: 20px;
+    }
+
+    .footer-derecha {
+        flex-wrap: wrap;
+        gap: 15px;
+    }
+
+    .footer-links {
+        flex-wrap: wrap;
+        gap: 15px;
+    }
 }

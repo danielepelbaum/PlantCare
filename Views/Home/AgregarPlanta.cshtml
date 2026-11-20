@@ -1,0 +1,60 @@
+@model PlantCare.Models.Planta
+@{
+    ViewData["Title"] = "Agregar planta";
+}
+
+<link rel="stylesheet" href="~/css/agregar-planta.css" />
+
+<div class="agregar-wrapper">
+    <div class="agregar-card">
+        <div class="agregar-header">
+            <h1>Agregar planta</h1>
+            <a class="volver-link" asp-controller="Home" asp-action="MisPlantas">← Volver</a>
+        </div>
+
+        @if (ViewBag.Error != null)
+        {
+            <div class="error-box">@ViewBag.Error</div>
+        }
+
+        <form method="post" asp-action="AgregarPlanta" asp-controller="Home">
+            @Html.AntiForgeryToken()
+            <div class="form-grid">
+                <div class="campo full">
+                    <label asp-for="Nombre">Nombre</label>
+                    <input asp-for="Nombre" placeholder="Ej: Monstera deliciosa" />
+                    <span asp-validation-for="Nombre" class="text-danger"></span>
+                </div>
+
+                <div class="campo">
+                    <label asp-for="TiempoRiego">Frecuencia de riego (días)</label>
+                    <input asp-for="TiempoRiego" type="number" min="1" value="7" />
+                </div>
+
+                <div class="campo">
+                    <label>Tipo</label>
+                    <select>
+                        <option>Interior</option>
+                        <option>Exterior</option>
+                        <option>Suculenta</option>
+                        <option>Pet friendly</option>
+                    </select>
+                </div>
+
+                <div class="campo full">
+                    <label asp-for="Descripción">Descripción</label>
+                    <textarea asp-for="Descripción" placeholder="Contá cómo es la planta, dónde la ubicaste y qué cuidados necesita."></textarea>
+                </div>
+            </div>
+
+            <div class="acciones">
+                <a class="btn-cancelar" asp-controller="Home" asp-action="MisPlantas">Cancelar</a>
+                <button class="btn-guardar" type="submit">Guardar planta</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

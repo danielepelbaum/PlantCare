@@ -1,11 +1,15 @@
-namespace Plantcare.Models
+namespace PlantCare.Models
 {
     public class Usuario
     {
         public int Id { get; set; }
-        public string NombreUsuario { get; set; }
-        public string Contraseña { get; set; }
-        public string Nombre { get; set; }
-        public string Apellido { get; set; }
+        public string NombreUsuario { get; set; } = string.Empty;
+        public string UsuarioNombre { get; set; } = string.Empty;
+        public string Contraseña { get; set; } = string.Empty;
+        public string Nombre { get; set; } = string.Empty;
+        public string Apellido { get; set; } = string.Empty;
+        public string Mail { get; set; } = string.Empty;
+        public string Teléfono { get; set; } = string.Empty;
+        public int Edad { get; set; }
     }
 }

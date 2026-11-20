@@ -1,0 +1,140 @@
+@{
+    ViewData["Title"] = "Iniciar sesión";
+    Layout = null;
+}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - PlantCare</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="~/css/sinsession.css" asp-append-version="true">
+
+    <style>
+        :root{--dark:#2e5721;--green:#718b4f;--pale:#e1e8c2;--brown:#80502d;--blue:#079ac4}
+        *{box-sizing:border-box}
+        body{margin:0;background:#e9e9e7;color:#171913;font:14px "DM Sans",Arial,sans-serif}
+        a{color:inherit;text-decoration:none}
+        main{flex:1;display:flex;justify-content:center;align-items:center;padding:21px 15px 25px}
+        .login-card{width:min(100%,400px);padding:29px 40px 22px;border-radius:16px;background:var(--pale)}
+        .login-brand{display:flex;justify-content:center;align-items:center;gap:9px;margin-bottom:6px;color:var(--dark);font-size:30px;font-weight:800;letter-spacing:-.8px;white-space:nowrap}
+        .login-brand .brand-mark{font-size:41px}
+        .login-card h1{margin:0;color:var(--brown);text-align:center;font-size:25px;line-height:1.3;font-weight:500}
+        .subtitle{margin:2px 0 14px;color:var(--dark);text-align:center;font-size:13px}
+        .form-group{margin-bottom:13px}
+        .form-group label{display:block;margin-bottom:6px;color:#754c2c;font-size:11px;font-weight:600}
+        .form-group input{width:100%;height:36px;padding:0 11px;border:1px solid var(--brown);border-radius:3px;outline:none;background:transparent;color:#36532a;font:11px "DM Sans",Arial,sans-serif}
+        .form-group input:focus{border-color:var(--dark);box-shadow:0 0 0 2px #2e57211f}
+        .password-wrap{position:relative}.password-wrap input{padding-right:38px}
+        .toggle-password{position:absolute;top:50%;right:9px;transform:translateY(-50%);padding:3px;border:0;background:transparent;color:var(--brown);cursor:pointer;font-size:13px}
+        .form-options{display:flex;justify-content:space-between;align-items:center;gap:10px;margin:1px 0 17px;font-size:11px}
+        .remember{display:inline-flex;align-items:center;gap:5px;color:#526744;white-space:nowrap}
+        .remember input{width:13px;height:13px;margin:0;accent-color:var(--dark)}
+        .forgot{color:var(--blue);font-size:11px}.forgot:hover,.signup a:hover{text-decoration:underline}
+        .submit-button{width:100%;min-height:36px;border:0;border-radius:20px;background:var(--dark);color:#fff;font:800 10px "DM Sans",Arial,sans-serif;cursor:pointer;transition:background .2s,transform .2s}
+        .submit-button:hover{background:var(--green);transform:translateY(-1px)}
+        .divider{display:flex;align-items:center;gap:15px;margin:15px 0;color:var(--brown);font-size:12px;font-weight:700}
+        .divider:before,.divider:after{content:"";flex:1;height:1px;background:var(--brown)}
+        .google-button{display:flex;align-items:center;justify-content:center;gap:7px;width:100%;min-height:36px;border:1px solid var(--brown);border-radius:3px;background:transparent;color:var(--dark);font:800 9px "DM Sans",Arial,sans-serif;cursor:pointer;transition:background .2s}
+        .google-button:hover{background:#ffffff59}.google-g{color:var(--green);font-size:18px;font-weight:800}
+        .signup{margin:14px 0 0;color:var(--dark);text-align:center;font-size:11px}.signup a{margin-left:8px;color:#75401e;font-weight:800}
+        .alerta{margin:0 0 12px;padding:8px 10px;border-radius:6px;background:#f8d7da;color:#842029;border:1px solid #f5c2c7;font-size:12px;font-weight:600;}
+        footer{min-height:47px;display:flex;align-items:center;justify-content:space-between;gap:20px;padding:10px 4.3%;background:var(--pale)}
+        .footer-brand{display:flex;align-items:center;gap:10px;color:var(--dark)}.footer-brand .brand-mark{font-size:26px}.footer-brand p{margin:0;font-size:11px;line-height:1.3}
+        .footer-links{display:flex;align-items:center;gap:clamp(13px,3vw,30px)}.footer-links a{font-size:12px;font-weight:700;text-transform:uppercase;white-space:nowrap}
+        .socials{display:flex;align-items:center;gap:9px;font-size:15px;font-weight:800}
+        @@media(max-width:760px){.navbar{flex-wrap:wrap;padding:10px 4%;gap:10px}.brand{font-size:21px}.nav-links{order:3;width:100%;justify-content:space-between;gap:3px}.nav-links a{padding:7px 5px;font-size:7px}.profile-link{margin-left:5px}main{padding:30px 15px}.login-card{padding:28px 30px 23px}footer{flex-wrap:wrap}.footer-links{width:100%;justify-content:space-between;flex-wrap:wrap;gap:12px}}
+        @@media(max-width:420px){.page{padding:0 5px}.login-card{padding:25px 20px 22px}.login-brand{font-size:28px}.login-brand .brand-mark{font-size:36px}.form-options{align-items:flex-start}.forgot{text-align:right}.footer-links a{font-size:7px}}
+        @@media(prefers-reduced-motion:reduce){*,*:before,*:after{transition-duration:.01ms!important}}
+    </style>
+</head>
+<body>
+<div class="page">
+    <header class="inicio-header">
+
+        <a class="inicio-logo" href="@Url.Action("Index", "Home")">
+                <img src="~/logo.png" alt="Logo PlantCare">
+                <span>PlantCare</span>
+        </a>
+
+            <nav class="inicio-nav">
+
+                <a href="@Url.Action("Index", "Home")">
+                    INICIO
+                </a>
+
+                <a href="@Url.Action("Explorar2", "Home")">
+                    EXPLORAR
+                </a>
+
+                <a href="@Url.Action("Guias2", "Home")">
+                    GUÍAS
+                </a>
+
+                <a href="@Url.Action("Nosotros", "Home")">
+                    SOBRE NOSOTROS
+                </a>
+
+            </nav>
+
+            <a class="inicio-login" href="@Url.Action("Login", "Home")">
+                INICIAR SESIÓN
+            </a>
+
+    </header>
+    <main>
+        <section class="login-card" aria-labelledby="login-title">
+            <div class="login-brand"><span class="brand-mark">🌱</span><span>PlantCare</span></div>
+            <h1 id="login-title">Iniciar sesión</h1>
+            <p class="subtitle">Ingresá a tu cuenta de PlantCare.</p>
+
+            @if (ViewBag.Error != null)
+            {
+                <div class="alerta">@ViewBag.Error</div>
+            }
+
+            <form method="post" asp-action="Login" asp-controller="Home">
+                @Html.AntiForgeryToken()
+                <div class="form-group">
+                    <label for="usuario">Usuario</label>
+                    <input id="usuario" name="usuario" type="text" placeholder="Usuario o email" autocomplete="username" required>
+                </div>
+                <div class="form-group">
+                    <label for="password">Contraseña</label>
+                    <div class="password-wrap">
+                        <input id="password" name="password" type="password" autocomplete="current-password" required>
+                        <button class="toggle-password" type="button" id="togglePassword" aria-label="Mostrar contraseña" title="Mostrar u ocultar contraseña">◉</button>
+                    </div>
+                </div>
+                <div class="form-options">
+                    <label class="remember"><input type="checkbox" name="remember"> Recordarme</label>
+                    <a class="forgot" href="#">¿Olvidaste tu contraseña?</a>
+                </div>
+                <button class="submit-button" type="submit" formaction="/Home/Index2">INICIAR SESIÓN</button>
+                <div class="divider"><span>o</span></div>
+                <button class="google-button" type="button"><span class="google-g">G</span> CONTINUAR CON GOOGLE</button>
+            </form>
+            <p class="signup">¿Todavía no tenés cuenta? <a asp-controller="Home" asp-action="Register">Crear cuenta</a></p>
+        </section>
+    </main>
+    <footer>
+        <div class="footer-brand"><span class="brand-mark">🌱</span><p>Pequeñas acciones.<br>Grandes cambios.</p></div>
+        <nav class="footer-links" aria-label="Enlaces del pie de página">
+            <a href="#">Ayuda</a><a href="#">Contacto</a><a href="#">Términos</a><a href="#">Privacidad</a>
+            <div class="socials" aria-label="Redes sociales"><span>◎</span><span>▣</span><span>♪</span></div>
+        </nav>
+    </footer>
+</div>
+<script>
+    const togglePassword = document.getElementById("togglePassword");
+    const passwordInput = document.getElementById("password");
+    togglePassword.addEventListener("click", function () {
+        const isHidden = passwordInput.type === "password";
+        passwordInput.type = isHidden ? "text" : "password";
+        togglePassword.setAttribute("aria-label", isHidden ? "Ocultar contraseña" : "Mostrar contraseña");
+    });
+</script>
+</body>
+</html>

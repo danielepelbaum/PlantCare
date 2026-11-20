@@ -1,0 +1,588 @@
+@{
+    ViewBag.Title = "Inicio";
+}
+
+<style>
+    .plantcare {
+        --verde-oscuro: #2d531a;
+        --verde: #6e8649;
+        --verde-claro: #e2e8c2;
+        --verde-panel: #c2c99e;
+        --amarillo: #e9dca0;
+        --naranja: #ffbd80;
+        --fondo: #ffffff;
+        --texto: #292b21;
+        font-family: Arial, Helvetica, sans-serif;
+        color: var(--texto);
+        background: var(--fondo);
+        width: 100%;
+        margin: 0;
+    }
+
+    .plantcare * {
+        box-sizing: border-box;
+    }
+
+    .pc-contenido {
+        max-width: 1120px;
+        width: 88%;
+        margin: 0 auto;
+        padding: 48px 0 50px;
+    }
+
+    .pc-portada {
+        display: grid;
+        grid-template-columns: 0.9fr 1.1fr;
+        align-items: center;
+        gap: 42px;
+        margin-bottom: 32px;
+    }
+
+    .pc-portada h1 {
+        color: var(--verde-oscuro);
+        font-size: clamp(27px, 3vw, 38px);
+        line-height: 1.15;
+        margin: 0 0 15px;
+    }
+
+    .pc-portada p {
+        font-family: Georgia, "Times New Roman", serif;
+        font-size: 14px;
+        line-height: 1.55;
+        margin: 0 0 18px;
+        max-width: 390px;
+    }
+
+    .pc-boton {
+        display: inline-flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 24px;
+        background: var(--verde);
+        color: white;
+        text-decoration: none;
+        padding: 13px 24px;
+        min-width: 210px;
+        border-radius: 28px;
+        font-size: 13px;
+        font-weight: 700;
+    }
+
+    .pc-boton span {
+        font-size: 22px;
+        line-height: 1;
+    }
+
+    .pc-imagen-portada {
+        width: 100%;
+        height: 235px;
+        object-fit: cover;
+        border-radius: 25px;
+        display: block;
+    }
+
+    .pc-valores {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 28px;
+        background: var(--amarillo);
+        border-radius: 25px;
+        padding: 30px 34px;
+        margin-bottom: 32px;
+    }
+
+    .pc-valor {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+    }
+
+    .pc-valor img {
+        width: 65px;
+        height: 65px;
+        border-radius: 50%;
+        object-fit: cover;
+        flex-shrink: 0;
+    }
+
+    .pc-valor h3 {
+        margin: 0 0 8px;
+        font-size: 13px;
+        text-transform: uppercase;
+    }
+
+    .pc-valor p {
+        margin: 0;
+        color: #5b5c4c;
+        font-size: 11px;
+        line-height: 1.5;
+    }
+
+    .pc-progreso {
+        background: var(--verde-panel);
+        border-radius: 24px;
+        padding: 25px 28px 24px;
+        margin-bottom: 32px;
+    }
+
+    .pc-controles {
+        display: flex;
+        gap: 8px;
+        border-bottom: 1px solid rgba(255,255,255,.65);
+        padding-bottom: 17px;
+        margin-bottom: 23px;
+    }
+
+    .pc-controles span {
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        background: var(--verde);
+    }
+
+    .pc-controles span:first-child {
+        background: var(--naranja);
+    }
+
+    .pc-controles span:nth-child(2) {
+        background: #f4f0d9;
+    }
+
+    .pc-progreso h2 {
+        margin: 0 0 8px;
+        font-size: 20px;
+        color: #22251c;
+    }
+
+    .pc-intro-progreso {
+        margin: 0 0 20px;
+        color: #555b43;
+        font-size: 13px;
+        line-height: 1.5;
+    }
+
+    .pc-progreso-contenido {
+        display: grid;
+        grid-template-columns: 1.35fr 0.8fr;
+        gap: 25px;
+        align-items: stretch;
+    }
+
+    .pc-grafico {
+        background: #fbfaf5;
+        border: 1px solid #e5e5d9;
+        border-radius: 14px;
+        padding: 22px 20px 13px;
+        min-height: 180px;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+    }
+
+    .pc-barras {
+        height: 115px;
+        display: flex;
+        align-items: flex-end;
+        justify-content: space-around;
+        gap: 12px;
+        border-bottom: 1px solid #deded3;
+        background: repeating-linear-gradient(to bottom, transparent 0, transparent 32px, #e8e8df 33px, transparent 34px);
+    }
+
+    .pc-barra {
+        width: 9%;
+        min-width: 15px;
+        border-radius: 6px 6px 0 0;
+        background: var(--naranja);
+    }
+
+    .pc-barra:nth-child(2),
+    .pc-barra:nth-child(4) {
+        background: var(--verde);
+    }
+
+    .pc-barra:nth-child(3),
+    .pc-barra:nth-child(6) {
+        background: #0098c9;
+    }
+
+    .pc-dias {
+        display: flex;
+        justify-content: space-around;
+        font-size: 10px;
+        color: #55594b;
+        padding-top: 8px;
+    }
+
+    .pc-resumen {
+        background: #f8f6ef;
+        border: 1px solid #e6e2d5;
+        border-radius: 14px;
+        padding: 22px;
+    }
+
+    .pc-resumen h3 {
+        font-size: 15px;
+        margin: 0 0 19px;
+    }
+
+    .pc-tarea {
+        display: flex;
+        align-items: flex-start;
+        gap: 12px;
+        margin-bottom: 17px;
+    }
+
+    .pc-punto {
+        width: 15px;
+        height: 15px;
+        border-radius: 50%;
+        background: var(--verde);
+        margin-top: 2px;
+        flex-shrink: 0;
+    }
+
+    .pc-tarea:nth-of-type(3) .pc-punto {
+        background: var(--naranja);
+    }
+
+    .pc-tarea strong {
+        display: block;
+        font-size: 12px;
+        margin-bottom: 5px;
+    }
+
+    .pc-tarea small {
+        display: block;
+        font-size: 11px;
+        color: #68695b;
+    }
+
+    .pc-linea {
+        width: 100%;
+        height: 8px;
+        border-radius: 10px;
+        background: #e0e4d2;
+        margin: -5px 0 17px;
+    }
+
+    .pc-linea span {
+        display: block;
+        width: 72%;
+        height: 100%;
+        background: var(--verde);
+        border-radius: 10px;
+    }
+
+    .pc-nota {
+        font-size: 11px;
+        color: #555b43;
+        margin: 18px 0 0;
+    }
+
+    .pc-accesos {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 30px;
+    }
+
+    .pc-tarjeta {
+        min-height: 175px;
+        border-radius: 24px;
+        padding: 24px;
+        color: #26271f;
+    }
+
+    .pc-tarjeta:nth-child(1) {
+        background: var(--amarillo);
+    }
+
+    .pc-tarjeta:nth-child(2) {
+        background: var(--naranja);
+    }
+
+    .pc-tarjeta:nth-child(3) {
+        background: var(--verde-panel);
+    }
+
+    .pc-tarjeta-titulo {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        margin-bottom: 15px;
+    }
+
+    .pc-tarjeta-icono {
+        font-size: 25px;
+        color: #714b1e;
+    }
+
+    .pc-tarjeta h3 {
+        font-size: 14px;
+        margin: 0;
+    }
+
+    .pc-tarjeta p {
+        color: #5b5c4c;
+        font-size: 12px;
+        line-height: 1.55;
+        margin: 0 0 17px;
+    }
+
+    .pc-tarjeta a {
+        color: #20251a;
+        text-decoration: none;
+        font-size: 12px;
+        font-weight: 700;
+    }
+
+    .pc-footer {
+        background: var(--verde-claro);
+        padding: 20px 5%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 25px;
+    }
+
+    .pc-footer-marca {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        color: var(--verde-oscuro);
+        font-size: 12px;
+        line-height: 1.4;
+    }
+
+    .pc-footer-marca span {
+        font-size: 25px;
+    }
+
+    .pc-footer-nav {
+        display: flex;
+        gap: 22px;
+        flex-wrap: wrap;
+    }
+
+    .pc-footer-nav a {
+        color: #2d3024;
+        text-decoration: none;
+        font-size: 10px;
+        text-transform: uppercase;
+    }
+
+    @@media (max-width: 900px) {
+        .pc-header {
+            flex-wrap: wrap;
+        }
+
+        .pc-nav {
+            order: 3;
+            width: 100%;
+        }
+
+        .pc-portada {
+            grid-template-columns: 1fr 1fr;
+            gap: 25px;
+        }
+
+        .pc-valores {
+            gap: 18px;
+            padding: 24px;
+        }
+
+        .pc-valor {
+            flex-direction: column;
+            align-items: flex-start;
+        }
+
+        .pc-progreso-contenido {
+            grid-template-columns: 1fr;
+        }
+
+        .pc-accesos {
+            gap: 15px;
+        }
+
+        .pc-tarjeta {
+            padding: 19px;
+        }
+    }
+
+    @@media (max-width: 620px) {
+        .pc-contenido {
+            width: 90%;
+            padding-top: 30px;
+        }
+
+        .pc-portada,
+        .pc-valores,
+        .pc-accesos {
+            grid-template-columns: 1fr;
+        }
+
+        .pc-imagen-portada {
+            height: 210px;
+        }
+
+        .pc-valores {
+            gap: 22px;
+        }
+
+        .pc-valor {
+            flex-direction: row;
+            align-items: center;
+        }
+
+        .pc-progreso {
+            padding: 20px 16px;
+        }
+
+        .pc-footer {
+            align-items: flex-start;
+            flex-direction: column;
+        }
+
+        .pc-footer-nav {
+            gap: 15px;
+        }
+
+        .pc-logo {
+            font-size: 22px;
+        }
+
+        .pc-nav a {
+            padding: 9px;
+            font-size: 9px;
+        }
+    }
+</style>
+
+<div class="plantcare">
+    <main class="pc-contenido">
+        <section class="pc-portada">
+            <div>
+                <h1>Cuidá tus plantas<br />de forma simple</h1>
+                <p>
+                    Aprendé qué necesita cada planta, organizá sus cuidados
+                    y registrá el progreso para mantenerlas sanas, todo desde un mismo lugar.
+                </p>
+                <a class="pc-boton" href="@Url.Action("Explorar", "Home")">
+                    Empezar ahora <span>⟶</span>
+                </a>
+            </div>
+
+            <img class="pc-imagen-portada"
+                 src="https://images.unsplash.com/photo-1497250681960-ef046c08a56e?auto=format&fit=crop&w=1200&q=85"
+                 alt="Varias plantas de interior en macetas" />
+        </section>
+
+        <section class="pc-valores">
+            <article class="pc-valor">
+                <img src="https://images.unsplash.com/photo-1501004318641-b39e6451bec6?auto=format&fit=crop&w=200&q=80" alt="Plantas verdes" />
+                <div>
+                    <h3>Cuidá</h3>
+                    <p>Organizá riegos, luz y tareas para no olvidarte de ningún cuidado.</p>
+                </div>
+            </article>
+
+            <article class="pc-valor">
+                <img src="https://images.unsplash.com/photo-1485955900006-10f4d324d411?auto=format&fit=crop&w=200&q=80" alt="Planta en maceta" />
+                <div>
+                    <h3>Aprendé</h3>
+                    <p>Compartí experiencias, dudas y consejos con personas que aman las plantas.</p>
+                </div>
+            </article>
+
+            <article class="pc-valor">
+                <img src="https://images.unsplash.com/photo-1466692476868-aef1dfb1e735?auto=format&fit=crop&w=200&q=80" alt="Plantas creciendo" />
+                <div>
+                    <h3>Crecé</h3>
+                    <p>Registrá tus cambios y acompañá el crecimiento de cada una de tus plantas.</p>
+                </div>
+            </article>
+        </section>
+
+        <section class="pc-progreso">
+            <div class="pc-controles">
+                <span></span><span></span><span></span>
+            </div>
+
+            <h2>Tu progreso</h2>
+            <p class="pc-intro-progreso">
+                Revisá de forma rápida cómo vienen tus cuidados y qué tareas<br />
+                necesitan atención durante la semana.
+            </p>
+
+            <div class="pc-progreso-contenido">
+                <div class="pc-grafico" aria-label="Gráfico ilustrativo de tareas completadas por día">
+                    <div class="pc-barras">
+                        <div class="pc-barra" style="height: 22%;"></div>
+                        <div class="pc-barra" style="height: 48%;"></div>
+                        <div class="pc-barra" style="height: 65%;"></div>
+                        <div class="pc-barra" style="height: 100%;"></div>
+                        <div class="pc-barra" style="height: 52%;"></div>
+                        <div class="pc-barra" style="height: 38%;"></div>
+                        <div class="pc-barra" style="height: 78%;"></div>
+                    </div>
+                    <div class="pc-dias">
+                        <span>L</span><span>M</span><span>M</span><span>J</span><span>V</span><span>S</span><span>D</span>
+                    </div>
+                </div>
+
+                <aside class="pc-resumen">
+                    <h3>Esta semana</h3>
+
+                    <div class="pc-tarea">
+                        <span class="pc-punto"></span>
+                        <div>
+                            <strong>Riegos completados</strong>
+                            <small>5 de 7 tareas</small>
+                        </div>
+                    </div>
+
+                    <div class="pc-linea"><span></span></div>
+
+                    <div class="pc-tarea">
+                        <span class="pc-punto"></span>
+                        <div>
+                            <strong>Próximo cuidado</strong>
+                            <small>Fertilización · En 5 días</small>
+                        </div>
+                    </div>
+                </aside>
+            </div>
+
+            <p class="pc-nota">Un vistazo a tus rutinas para que cada planta reciba lo que necesita.</p>
+        </section>
+
+        <section class="pc-accesos">
+            <article class="pc-tarjeta">
+                <div class="pc-tarjeta-titulo">
+                    <span class="pc-tarjeta-icono">▦</span>
+                    <h3>Consejos personalizados</h3>
+                </div>
+                <p>Recibí consejos simples y personalizados según las necesidades de tus plantas.</p>
+                <a href="@Url.Action("Consejos", "Plantas")">Ver más →</a>
+            </article>
+
+            <article class="pc-tarjeta">
+                <div class="pc-tarjeta-titulo">
+                    <span class="pc-tarjeta-icono">◷</span>
+                    <h3>Recordatorios de riego</h3>
+                </div>
+                <p>Organizá los próximos riegos y recibí avisos para cuidar cada planta a tiempo.</p>
+                <a href="@Url.Action("Recordatorios", "Plantas")">Ver más →</a>
+            </article>
+
+            <article class="pc-tarjeta">
+                <div class="pc-tarjeta-titulo">
+                    <span class="pc-tarjeta-icono">▤</span>
+                    <h3>Comunidad de plantas</h3>
+                </div>
+                <p>Compartí dudas, experiencias y consejos con la comunidad y aprendé junto a otros usuarios.</p>
+                <a href="@Url.Action("Comunidad", "Home")">Ver más →</a>
+            </article>
+        </section>
+    </main>
+</div>

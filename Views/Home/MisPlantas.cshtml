@@ -1,0 +1,86 @@
+
+@{
+    ViewBag.Title = "Mis plantas";
+
+    var plantas = ViewBag.Plantas as List<PlantCare.Models.Planta>
+        ?? new List<PlantCare.Models.Planta>();
+
+    var cantidad = plantas.Count;
+}
+
+<link rel="stylesheet" href="~/css/mis-plantas.css" />
+
+<div class="mis-plantas">
+    <main class="mp-contenido">
+
+        <section class="mp-titulo-fila">
+            <div class="mp-titulo">
+                <h1>Mis plantas</h1>
+                <p>Tenés @cantidad plantas registradas</p>
+            </div>
+
+            <a class="mp-agregar"
+               href="@Url.Action("AgregarPlanta", "Home")">
+                ＋ Agregar planta
+            </a>
+        </section>
+
+        <div class="mp-estadisticas">
+            <span>♧ @cantidad plantas</span>
+        </div>
+
+        <form class="mp-filtros"
+              method="get"
+              action="@Url.Action("MisPlantas", "Home")">
+
+            <input class="mp-busqueda"
+                   type="search"
+                   name="busqueda"
+                   value="@Context.Request.Query["busqueda"]"
+                   placeholder="⌕  Buscar mis plantas..."
+                   aria-label="Buscar mis plantas" />
+
+            <button type="submit">Buscar</button>
+        </form>
+
+        <section class="mp-lista">
+
+            @if (plantas.Any())
+            {
+                foreach (var planta in plantas)
+                {
+                    <article class="mp-tarjeta">
+
+                        <div class="mp-foto-contenedor">
+                            <img class="mp-foto"
+                                 src="https://images.unsplash.com/photo-1497250681960-ef046c08a56e?auto=format&fit=crop&w=700&q=85"
+                                 alt="@planta.Nombre" />
+
+                            <span class="mp-menu">•••</span>
+                        </div>
+
+                        <div class="mp-detalle">
+                            <h2>@planta.Nombre</h2>
+
+                            <span class="mp-estado ok">
+                                ✓ @planta.TiempoRiego días entre riegos
+                            </span>
+
+                            <a class="mp-ver"
+                               href="@Url.Action("Detalle", "Plantas", new { id = planta.ID })">
+                                Ver planta →
+                            </a>
+                        </div>
+
+                    </article>
+                }
+            }
+            else
+            {
+                <p>Todavía no tenés plantas registradas.</p>
+            }
+
+        </section>
+
+    </main>
+</div>
